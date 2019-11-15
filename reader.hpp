@@ -47,13 +47,19 @@ void Reader<T>::deleteLinesByNumber(vector<vector<T>>& A, vector<int>& lineNumbe
     // pass vect to map
     map<int, vector<T>> lines;
     for(int i = 0; i < A.size(); i++) {
-        lines[i] = A[i];
+        lines[i] = A[i - 1];
     }
 
     // erase lines
+    cout << "Lineas a borrar\n";
     for(auto line : lineNumbers) {
+        cout << line << " ";
+        for (auto w : lines[line])
+            cout << w << " ";
+        cout << endl;
         lines.erase(line);
     }
+    cout << "-------------\n";
 
     // create new vector of lines and return them
     vector<vector<T>> newLines;

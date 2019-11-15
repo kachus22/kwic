@@ -15,7 +15,7 @@ vector<int> Input::askToRemoveLines(){
     vector<int> linesToRemove;
     string line;
     do {
-        cout << "Desea borrar alguna linea? (ENTER si no)";
+        cout << "Desea borrar alguna linea? (ENTER si no) ";
         getline(cin, line);
         if (line != "")
             linesToRemove.push_back(stoi(line));
@@ -26,7 +26,7 @@ vector<int> Input::askToRemoveLines(){
 
 // True if stopwords will be removed
 bool Input::askToRemoveStopwords(){
-    cout << "Desea borrar stopwords? (y/n)" << endl;
+    cout << "Desea borrar stopwords? (y/n) ";
     string line;
     getline(cin, line);
     return line == "Y" || line == "y";
@@ -34,7 +34,7 @@ bool Input::askToRemoveStopwords(){
 
 // True if ascending
 bool Input::askSortingOrder(){
-    cout << "Que tipo de orden desea? (asc/desc)" << endl;
+    cout << "Que tipo de orden desea? (asc/desc) ";
     string line;
     getline(cin, line);
     return line == "ASC" || line == "asc";
