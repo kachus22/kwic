@@ -21,9 +21,13 @@ void Reader<T>::processData(vector<vector<T>>& A){
     
 
     string line;
+    int i = 0;
+    cout << "Texto inicial\n";
+    cout << "-------------\n";
     while (!file.eof()) {
         getline(file, line);
         vector<string> words;
+        cout << ++i << " " << line << "\n";
         stringstream ss(line);
         T word;
         while (ss >> word) {
@@ -31,5 +35,6 @@ void Reader<T>::processData(vector<vector<T>>& A){
         }
         A.push_back(words);
     }
+    cout << "-------------\n";
     file.close();
 }

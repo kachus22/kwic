@@ -12,9 +12,11 @@ public:
 
 template<typename T>
 void Printer<T>::processData(vector<vector<T>> A){
+    int i = 0;
     for (auto r : A) {
+        cout << ++i << " ";
         for (auto w : r)
-            cout << w << " ";
+            cout << " " << w << " ";
         cout << "\n";
     }
 }
