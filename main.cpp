@@ -14,7 +14,7 @@ int main() {
     vector<vector<string>> unorderedRotations;
     Reader<string> reader;
     RotationFilter<string> rotateFilter;
-    SortingFilter<string> sortingFilter;
+    SortingFilter sortingFilter;
     Printer<string> printer;
 
     // Read initial data

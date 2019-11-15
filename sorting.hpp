@@ -3,15 +3,32 @@
 
 using namespace std;
 
-template<typename T>
+string toUpper(string s) {
+    string res = s;
+    for (char &c : res)
+        c = toupper(c);
+    return res;
+}
+
+bool caseInsensitiveCmp(vector<string> lhs, vector<string> rhs) {
+    string l;
+    for (auto &w : lhs)
+        l += toUpper(w);
+
+    string r;
+    for (auto &w : rhs)
+        r += toUpper(w);
+
+    return l < r;
+}
+
 class SortingFilter {
 public:
-    vector<vector<T>> processData(vector<vector<T>> A);
+    vector<vector<string>> processData(vector<vector<string>> A);
 };
 
-template<typename T>
-vector<vector<T>> SortingFilter<T>::processData(vector<vector<T>> A){
-    vector<vector<T>> ordered = A;
-    sort(ordered.begin(), ordered.end());
+vector<vector<string>> SortingFilter::processData(vector<vector<string>> A){
+    vector<vector<string>> ordered = A;
+    sort(ordered.begin(), ordered.end(), caseInsensitiveCmp);
     return ordered;
 }
