@@ -1,24 +1,25 @@
 #include <iostream>
 #include <vector>
+#include <set>
 
 using namespace std;
 
 class Input {
 public:
-    vector<int> askToRemoveLines();
+    set<int> askToRemoveLines();
     bool        askToRemoveStopwords();
     bool        askSortingOrder();
 };
 
 // Returns indexes to be removed
-vector<int> Input::askToRemoveLines(){
-    vector<int> linesToRemove;
+set<int> Input::askToRemoveLines(){
+    set<int> linesToRemove;
     string line;
     do {
         cout << "Desea borrar alguna linea? (ENTER si no) ";
         getline(cin, line);
         if (line != "")
-            linesToRemove.push_back(stoi(line));
+            linesToRemove.insert(stoi(line));
     }
     while (line != "");
     return linesToRemove;

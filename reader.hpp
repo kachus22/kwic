@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <map>
+#include <set>
 
 using namespace std;
 
@@ -10,7 +11,7 @@ template<typename T>
 class Reader {
 public:
     void processData(vector<vector<T>>& A);
-    void deleteLinesByNumber(vector<vector<T>>& A, vector<int>& lineNumbers);
+    vector<vector<T>> deleteLinesByNumber(const vector<vector<T>> &A, set<int>& lineNumbers);
     void deleteStopWords(vector<vector<T>>& A);
 };
 
@@ -43,30 +44,22 @@ void Reader<T>::processData(vector<vector<T>>& A){
 }
 
 template<typename T>
-void Reader<T>::deleteLinesByNumber(vector<vector<T>>& A, vector<int>& lineNumbers) {
+vector<vector<T>> Reader<T>::deleteLinesByNumber(const vector<vector<T>> &A, set<int>& lineNumbers) {
     // pass vect to map
-    map<int, vector<T>> lines;
-    for(int i = 0; i < A.size(); i++) {
-        lines[i] = A[i - 1];
-    }
-
-    // erase lines
     cout << "Lineas a borrar\n";
-    for(auto line : lineNumbers) {
-        cout << line << " ";
-        for (auto w : lines[line])
-            cout << w << " ";
-        cout << endl;
-        lines.erase(line);
-    }
-    cout << "-------------\n";
-
-    // create new vector of lines and return them
     vector<vector<T>> newLines;
-    for(auto linePair : lines) {
-        newLines.push_back(linePair.second);
+    for(int i = 0; i < A.size(); i++) {
+        if(!lineNumbers.count(i + 1))
+            newLines.push_back(A[i]);
+        else {
+            cout << (i + 1) << " ";
+            for (auto w : A[i])
+                cout << w << " ";
+            cout << endl;
+        }
     }
-    A = newLines;
+
+    return newLines;
 }
 
 template<typename T>
