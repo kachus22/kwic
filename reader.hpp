@@ -10,7 +10,7 @@ template<typename T>
 class Reader {
 public:
     void processData(vector<vector<T>>& A);
-    vector<vector<T>> deleteLinesByNumber(vector<vector<T>>& A, vector<int>& lineNumbers);
+    void deleteLinesByNumber(vector<vector<T>>& A, vector<int>& lineNumbers);
 };
 
 template<typename T>
@@ -42,13 +42,11 @@ void Reader<T>::processData(vector<vector<T>>& A){
 }
 
 template<typename T>
-vector<vector<T>> Reader<T>::deleteLinesByNumber(vector<vector<T>>& A, vector<int>& lineNumbers) {
+void Reader<T>::deleteLinesByNumber(vector<vector<T>>& A, vector<int>& lineNumbers) {
     // pass vect to map
-    map<int, <vector<T>>> lines;
+    map<int, vector<T>> lines;
     for(int i = 0; i < A.size(); i++) {
-        if(lines.count(A[i]) > 0) {
-            lines[i] = A[i];
-        } 
+        lines[i] = A[i];
     }
 
     // erase lines
@@ -61,6 +59,5 @@ vector<vector<T>> Reader<T>::deleteLinesByNumber(vector<vector<T>>& A, vector<in
     for(auto linePair : lines) {
         newLines.push_back(linePair.second);
     }
-
-    return newLines;
+    A = newLines;
 }
