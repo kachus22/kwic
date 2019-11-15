@@ -38,4 +38,5 @@ int main() {
 
     linesToRemove = io.askToRemoveLines();
     reader.deleteLinesByNumber(sorted, linesToRemove);
+    printer.processData(sorted);
 }
