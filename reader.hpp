@@ -11,6 +11,7 @@ class Reader {
 public:
     void processData(vector<vector<T>>& A);
     void deleteLinesByNumber(vector<vector<T>>& A, vector<int>& lineNumbers);
+    void deleteStopWords(vector<vector<T>>& A);
 };
 
 template<typename T>
@@ -60,4 +61,17 @@ void Reader<T>::deleteLinesByNumber(vector<vector<T>>& A, vector<int>& lineNumbe
         newLines.push_back(linePair.second);
     }
     A = newLines;
+}
+
+template<typename T>
+void Reader<T>::deleteStopWords(vector<vector<T>>& A) {
+    ifstream file;
+    file.open("stop.txt");
+    string word;
+    while (!file.eof()) {
+        getline(file, word);
+        for(auto &v : A)
+            v.erase(std::remove(v.begin(), v.end(), word), v.end());
+    }
+    file.close();
 }

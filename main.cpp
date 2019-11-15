@@ -26,10 +26,16 @@ int main() {
     // Read initial data
     reader.processData(lines);
     reader.deleteLinesByNumber(lines, linesToRemove);
+    if (removeStopwords) reader.deleteStopWords(lines);
     // Pass each line through the rotation filter
     for(auto line : lines) {
         rotateFilter.processData(unorderedRotations, line);
     }
+    
+    vector<vector<string>> sorted = sortingFilter.processData(unorderedRotations);
     // Order all the combinations and print them
-    printer.processData(sortingFilter.processData(unorderedRotations));
+    printer.processData(sorted);
+
+    linesToRemove = io.askToRemoveLines();
+    reader.deleteLinesByNumber(sorted, linesToRemove);
 }
